@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://kit.fontawesome.com/614ae992ea.js" crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Video Calling App</title>
+
+	<link rel="stylesheet" href="static\css\style.css">
+</head>
+<body>
+
+	<div id="logo-container">
+		<img src="../static/images/SilentConnect.png" alt="">
+  	</div>
+    
+    
+	<div id="container">
+		<video autoplay="true" id="videoElement"></video>
+        <canvas id="canvasElement"></canvas>
+        <img id="photo">
+		<!-- <video  id="remote-video" autoplay></video> -->
+	</div>
+
+	<div class="video-controls">
+		<!-- mute button -->
+		<button class="mute-button" id="mute">
+			<i class="fa-solid fa-microphone"></i>
+		</button>
+		<!-- video button -->
+		<button class="video-button" id="video-toggle">
+		  <i id="video-icon" class="fas fa-video"></i>
+		</button>
+		<!-- end call button -->
+		<button class="end-call-button" id="endCall">
+		  <i class="fas fa-phone-slash"></i>
+		</button>
+		<button class="sign-button" id="signCapture">
+            <i class="fas fa-sign-language"></i>
+		</button>
+		
+		
+	  </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='../static/js/videocall.js') }}"></script>
+	<script src="../static/js/videocall.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="ugh, hi." name="description">
+        <meta content="Makeup Webcam" name="title">
+        <title>Face Detection</title>
+        <style>
+            body {
+                background-color: #eee;
+                font-family: Arial, sans-serif;
+            }
+            #container {
+                margin: 0 auto;
+                border: 10px solid #333;
+                width: 640px;
+                height: 480px;
+                background-color: #fff;
+            }
+            #videoElement {
+                width: 100%;
+                height: 100%;
+                display: none;
+            }
+            #canvasElement {
+                width: 100%;
+                height: 100%;
+                border: 1px solid black;
+                display: none;
+            }
+            #photo {
+                width: 100%;
+                height: 100%;
+                border: 1px solid black;
+                display: none;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="container">
+            <video autoplay="true" id="videoElement"></video>
+            <canvas id="canvasElement"></canvas>
+            <img id="photo">
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html> -->

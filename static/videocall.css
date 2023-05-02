@@ -1,0 +1,167 @@
+body {
+  background-color: #252525;
+  font-family: Arial, sans-serif;
+}
+
+#container {
+  display: flex;
+  justify-content: space-between;
+  width: 1500px;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 150px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#videoElement, #photo {
+  width: 49%;
+  height: 90%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#videoElement {
+  order: 1;
+}
+
+#photo {
+  order: 2;
+}
+
+#photo:after {
+  content: "Remote Video";
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#videoElement:after {
+  content: "Local Video";
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+/* video {
+  width: 45%;
+  height: auto;
+  margin: 0 100px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  
+} */
+
+/* img{
+  width: 45%;
+  height: auto;
+  margin: 0 100px;
+  border: 2px solid #333;
+  border-radius: 5px;
+} */
+
+canvas{
+  width: 45%;
+  height: auto;
+  margin: 0 100px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  display: none;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  margin: 0 10px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.video-controls button {
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+  color: #4d4d4d;
+  cursor: pointer;
+  font-size: 18px;
+  height: 60px;
+  margin: 0 10px;
+  outline: none;
+  padding: 10px;
+  text-align: center;
+  width: 60px;
+}
+
+.video-controls button:hover {
+  background-color: #4d4d4d !important;
+}
+
+.mute-button i, .video-button i, .end-call-button i {
+  margin-bottom: 5px;
+}
+
+.mute-button span, .video-button span, .end-call-button span {
+  display: block;
+  font-size: 12px;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  outline: none;
+  padding: 0;
+}
+
+.icon-button i {
+  color: #777;
+}
+
+.icon-button:hover i {
+  color: #ff69b4;
+}
+
+.icon-button.clicked i {
+  color: #ff69b4;
+}
+
+/* Style the logo container */
+#logo-container {
+position: absolute;
+top: 20px;
+left: 20px;
+}
+
+/* Style the logo image */
+#logo-container img {
+height: 100px;
+width: 100px;
+}
+
