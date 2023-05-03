@@ -17,6 +17,9 @@ from twilio.jwt.access_token.grants import VideoGrant, ChatGrant
 from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
 from flask_cors import CORS
+import pyttsx3
+
+engine = pyttsx3.init()
 
 load_dotenv()
 twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -42,8 +45,8 @@ camera_on = True
 
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FPS, 25)  # Set frame rate to 10 FPS
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)  # Set input resolution to 320x240
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 375)  # Set input resolution to 320x240
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 375)
 
 mp_holistic = mp.solutions.holistic
 mp_drawing = mp.solutions.drawing_utils
@@ -74,6 +77,7 @@ def get_chatroom(name):
     for conversation in twilio_client.conversations.conversations.stream():
         if conversation.friendly_name == name:
             return conversation
+
 
     # a conversation with the given name does not exist ==> create a new one
     return twilio_client.conversations.conversations.create(
@@ -110,7 +114,9 @@ def gen_frames():
         is_recording = False
         is_paused = False
         start_time = time.time()
+        
         while True:
+            
             # Capture frame from camera
             success, frame = cap.read()
             if not success:
@@ -127,6 +133,15 @@ def gen_frames():
 
             # Convert sign_label to string
             sign_detected_str = str(sign_detected)
+
+            # Inside the while loop
+            
+
+            # Speak the sign_detected string
+            engine.say(sign_detected_str)
+            engine.runAndWait()
+
+            
 
             # Draw the sign label on the image
             font = cv2.FONT_HERSHEY_SIMPLEX
@@ -154,6 +169,13 @@ def gen_frames():
                 b"--frame\r\n"
                 b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n"
             )
+            if (
+                
+                not is_recording
+                and time.time() - start_time >= 5
+            ):
+                sign_recorder.record()
+                start_time = time.time()
 
             elapsed_time = time.time() - start_time
             if elapsed_time < 0.1:
@@ -303,17 +325,17 @@ def video_feed2():
         # emit('out-image-event', {'image_data': video_frame},  namespace='/test', include_self=False)
     return response
 
-@app.route('/start_recording')
-def start_recording():
-    global is_recording
-    is_recording = True
-    return "Sign recording started"
+# @app.route('/start_recording')
+# def start_recording():
+#     global is_recording
+#     is_recording = True
+#     return "Sign recording started"
 
-@app.route('/stop_recording')
-def stop_recording():
-    global is_recording
-    is_recording = False
-    return "Sign recording stopped"
+# @app.route('/stop_recording')
+# def stop_recording():
+#     global is_recording
+#     is_recording = False
+#     return "Sign recording stopped"
 
 
 @app.route('/camera_on')

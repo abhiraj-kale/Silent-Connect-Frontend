@@ -68,14 +68,17 @@
     height: 100%;
     padding-right: 5px;
     display: flex;
-    flex-wrap: wrap;
+    
     align-content: flex-start;
+    
 }
 .participant {
     margin-bottom: 10px;
     margin-right: 5px;
     display: grid;
     grid-template-rows: auto 20px;
+    
+    
 }
 .participant div {
     text-align: center;
@@ -139,24 +142,93 @@
     max-height: 1px;
 }
 
+.buttoncss {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 10%;
+  will-change: transform;
+}
+
+.buttoncss:disabled {
+  pointer-events: none;
+}
+
+.buttoncss:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.buttoncss:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+input[type="text"] {
+    border-radius: 15px;
+    border: 15px solid black;
+    border: none;
+    padding: 10px;
+    background-color: white;
+    color: black;
+  }
+  .sign{
+    border-radius: 10px; /* sets the roundness of the border */
+  border: 5px solid black; /* sets the thickness and color of the border */
+   
+  }
+
+
+
+
+
+
         </style>
     </head>
     <body>
-        <h1>Flask & Twilio Video Conference</h1>
+        <a href="/" class="flex w-40">
+            <img src="../static/images/SilentConnect.png" alt="logo" class="cursor-pointer" style="height:150px; width:150px;" >
+        </a>
+        
         <form>
             <label for="username">Name: </label>
             <input type="text" name=”username” id="username">
-            <button id="join_leave">Join call</button>
-            <button id="share_screen" disabled>Share screen</button>
-            <button id="toggle_chat" disabled>Toggle chat</button>
+            <br><br>
+            <button  class=buttoncss id="join_leave">Join call</button>
+            <button class=buttoncss id="share_screen" disabled>Share screen</button>
+            <button class=buttoncss id="toggle_chat" disabled>Toggle chat</button>
+            <button class=buttoncss id="record-button">Record</button>
+
         </form>
         <p id="count">Disconnected.</p>
         <div id="root">
             <div id="container" class="container">
                 <div id="local" class="participant"><div></div>
-                <div class="label">Me</div></div>
+            
                 <!-- more participants will be added dynamically here -->
-                <img id="video-stream" src="https://74b9-182-76-21-121.ngrok-free.app/video_feed">
+                <img class=sign id="video-stream" src="/video_feed">
+                
                 <audio id="local-audio" autoplay></audio>
             </div>
             <div id="chat">

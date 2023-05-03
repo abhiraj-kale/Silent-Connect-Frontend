@@ -6,6 +6,12 @@ from utils.dtw import dtw_distances
 from models.sign_model import SignModel
 from utils.landmark_utils import extract_landmarks
 
+from gtts import gTTS
+from playsound import playsound
+import os
+audio = 'output/speech.mp3'
+language = 'en-IN'
+
 
 class SignRecorder(object):
     def __init__(self, reference_signs: pd.DataFrame, seq_len=50):
@@ -39,10 +45,12 @@ class SignRecorder(object):
                 self.recorded_results.append(results)
             else:
                 self.compute_distances()
-                print(self.reference_signs)
+                #print(self.reference_signs)
 
         if np.sum(self.reference_signs["distance"].values) == 0:
+            
             return "", self.is_recording
+        
         if np.sum(self.reference_signs["distance"].values[0]) == np.Inf:
             return "Couldn't identify the sign", self.is_recording
         if np.sum(self.reference_signs["distance"].values[0]) > 20000:
@@ -92,4 +100,5 @@ class SignRecorder(object):
         predicted_sign, count = sign_counter[0]
         # if count / batch_size < threshold:
         #     return "Signe inconnu"
+        
         return predicted_sign
